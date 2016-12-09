@@ -43,7 +43,6 @@ public class MusicPlaylist implements Playlist{
         this.trackTitle = null;
         this.artistName = null;
         this.albumName = null;
-        //this.i = 1;
         this.trackLength = 0;
     }
 
@@ -51,16 +50,12 @@ public class MusicPlaylist implements Playlist{
      *
      */
     public void addTrack(Song song) throws NullPointerException{
-//        if (song.getTitle() == null || song.getArtistName() == null
-//                || song.getAlbumName() == null || song.getTrackLength() <0 ) {
-//            throw new NullPointerException("Please add a valid track.");
-//            }
+
         if (song.getTitle() != null && song.getArtistName() != null
                 && song.getAlbumName() != null && song.getTrackLength() >=0 ) {
             playList.add(song);
             this.playLength = playLength + song.getTrackLength();
         }
-        //System.out.println("Number of tracks: " + playList.size());
 
     }
 
@@ -202,7 +197,7 @@ public class MusicPlaylist implements Playlist{
         MusicPlaylist DanasList = new MusicPlaylist();
         Song track1 = new Song("Age Of Consent","New Order","Power, Corruption & Lies", 300);
         Song track2 = new Song("Caravan", "Van Morrison", "Moondance", 20);
-        Song track3 = new Song("Gilmore Girls Theme Song", "Unknown", "Gilmore Girls", 150);
+        Song track3 = new Song("Fast Car", "Tracy Chapman", "Gilmore Girls", 150);
         Song track4 = new Song("Dance Yourself Clean", "LCD Soundsystem", "This is Happening", 1000);
         Song track5 = new Song(null, "Artist5", "Album5", 0);
         Song track6 = new Song("Null_Artist", null ,"Album6", 2);
@@ -220,15 +215,11 @@ public class MusicPlaylist implements Playlist{
 
         DanasList.setCurrentTrack();
 
-        int size = DanasList.getTrackCount();
-        //System.out.println("Count is this: " + size);
-
         System.out.println("Welcome to Dana's Playlist.");
         System.out.println("Enter next at any time to change the song.");
         System.out.println("");
 
 
-        // DanasList.shuffle();
         DanasList.show();
         System.out.println("Total playlist length: " + (DanasList.getTotalPlayLength())/60 + " minutes.");
         System.out.println("");
@@ -239,16 +230,12 @@ public class MusicPlaylist implements Playlist{
         Scanner sc = new Scanner(System.in);
         String line = sc.nextLine();
 
-        //while (sc.hasNext()) {
-
         if (line.equals("next")) {
             DanasList.next();
             System.out.println("You are currently listening to " + DanasList.currentTrackTitle() + " by " + DanasList.currentArtistName()
                     + " running at " + (DanasList.currentTrackLength()/60) + " minutes long.");
             System.out.println("Current track album is: " + DanasList.currentAlbumName());
         }
-        //}
-
 
 
     }
