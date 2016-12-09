@@ -1,4 +1,5 @@
 /**
+ * MusicPlayer creates and controls a music playlist program that allows uer interaction with GUI components
  * Created by danayu on 11/4/16.
 */
 
@@ -37,32 +38,21 @@ public class MusicPlayer extends JFrame {
     DefaultListModel<Song> listModel = new DefaultListModel<Song>();
     JList<Song> trackList = new JList<Song>(listModel);
 
-    JTextArea textArea = new JTextArea("Welcome to Dana's Jam Space. ");
+    JTextArea textArea = new JTextArea("Welcome to Dana's Jam Space. " + "\n");
 
     public MusicPlayer() {
         this.myPlaylist = new MusicPlaylist();
-
 
         next.addActionListener(
                 event -> {
 
                 myPlaylist.next();
-                textArea.setText("You are playing " + myPlaylist.currentTrackTitle() + " by " + myPlaylist.currentArtistName());
+                textArea.setText("You are playing " + myPlaylist.currentTrackTitle() + " by " + myPlaylist.currentArtistName() + "\n");
                 System.out.println("Index i is at: " + myPlaylist.setCurrentTrack());
                 System.out.println("You are playing " + myPlaylist.currentTrackTitle() + " by " + myPlaylist.currentArtistName());
 
             });
 
-//        next.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//
-//                myPlaylist.next();
-//                textArea.setText("You are playing " + myPlaylist.currentTrackTitle() + " by " + myPlaylist.currentArtistName());
-//                System.out.println("Index i is at: " + myPlaylist.setCurrentTrack());
-//                System.out.println("You are playing " + myPlaylist.currentTrackTitle() + " by " + myPlaylist.currentArtistName());
-//
-//            }
-//        });
 
         shuffle.addActionListener(event -> {
                 myPlaylist.shuffle();
@@ -72,12 +62,11 @@ public class MusicPlayer extends JFrame {
 
                 while (it.hasNext()) {
                     Song song = it.next();
-                    //System.out.println(song);
                     listModel.addElement(song);
                 }
 
                 trackList = new JList<Song>(listModel);
-                textArea.setText("You are playing " + myPlaylist.currentTrackTitle() + " by " + myPlaylist.currentArtistName());
+                textArea.setText("You are playing " + myPlaylist.currentTrackTitle() + " by " + myPlaylist.currentArtistName() + "\n");
 
             });
 
@@ -89,31 +78,19 @@ public class MusicPlayer extends JFrame {
 
             });
 
-        ListSelectionListener listSelectionListener = new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent listSelectionEvent){
 
-                String a = trackList.getSelectedValue().toString();
-                textArea.setText("You have selected " + a);
-                }
-            };
-
-        trackList.addListSelectionListener(listSelectionListener);
-
-        myPlaylist.addTrack(new Song("Let it Be", "The Beatles", "The Beatles Album", 200));
-        myPlaylist.addTrack(new Song("Drum", "Mø", "Drum", 250));
-        myPlaylist.addTrack(new Song("Coldspecks", "Artist3", "David's Album", 170));
+        myPlaylist.addTrack(new Song("Fast Car", "Tracy Chapman", "Tracy Chapman", 170));
         myPlaylist.addTrack(new Song("How Will I Know", "Whitney", "WHITNEY HOUSTON", 210));
+        myPlaylist.addTrack(new Song("Drinkee", "SOFI TUKKER", "SOFI TUKKER", 200));
+        myPlaylist.addTrack(new Song("Let it Be", "The Beatles", "The Beatles Album", 250));
         myPlaylist.setCurrentTrack();
 
         System.out.println(myPlaylist.setCurrentTrack());
-
-        //System.out.println(myPlaylist.getTrackCount());
 
         Iterator<Song> it = myPlaylist.iterator();
 
         while (it.hasNext()) {
             Song song = it.next();
-            //System.out.println(song);
             listModel.addElement(song);
         }
 
